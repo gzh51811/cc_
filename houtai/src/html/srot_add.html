@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分类</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">后台管理系统</div>
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="javascript:;">控制台</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">商品管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">用户</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">邮件管理</a></dd>
+                        <dd><a href="javascript:;">消息管理</a></dd>
+                        <dd><a href="javascript:;">授权管理</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">基本资料</a></dd>
+                        <dd><a href="javascript:;">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:;">退了</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">商品管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="./list.html">商品列表</a></dd>
+                            <dd><a href="./list_srot.html">商品分类</a></dd>
+                            <dd><a href="./list_add.html">添加商品</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">用户管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="./user_list.html">用户列表</a>
+                            </dd>
+                            <dd>
+                                <a href="./user_add.html">添加用户</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">订单管理</a>
+                        <dl class="layui-nav-child">
+                            <dd class="layui-this"><a href="./order_list.html">订单列表</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <form class="layui-form" action="">
+                <!-- 分类名称 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="username" required lay-verify="required" placeholder="请输入标题"
+                            autocomplete="off" class="layui-input wSize" id="name">
+                    </div>
+                </div>
+                <!-- 文本域 -->
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">文本域</label>
+                    <div class="layui-input-block">
+                        <textarea name="desc" placeholder="请输入内容" class="layui-textarea " id="desc"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../layui/layui.js"></script>
+    <script src="../layui/layui.all.js"></script>
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="../js/srot_add.js"></script>
+</body>
+
+</html>

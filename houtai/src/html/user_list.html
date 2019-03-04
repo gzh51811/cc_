@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>用户列表</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../layui/layui.all.js"></script>
+    <script src="../layui/layui.js"></script>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">后台管理系统</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">控制台</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">商品管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;">邮件管理</a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;">消息管理</a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;">授权管理</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;">基本资料</a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;">安全设置</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="./login.html">退出</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">商品管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="./list.html">商品列表</a>
+                            </dd>
+                            <dd>
+                                <a href="./list_srot.html">商品分类</a>
+                            </dd>
+                            <dd>
+                                <a href="./list_add.html">添加商品</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">用户管理</a>
+                        <dl class="layui-nav-child">
+                            <dd class="layui-this">
+                                <a href="./user_list.html">用户列表</a>
+                            </dd>
+                            <dd>
+                                <a href="./user_add.html">添加用户</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">订单管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="./order_list.html">订单列表</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <table id="demo" lay-filter="test"></table>
+            <table class="layui-hide" id="test" lay-filter="test"></table>
+
+            <script type="text/html" id="toolbarDemo">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm"  lay-event="getCheckData">添加用户</button>
+                    <button class="layui-btn layui-btn-sm"  lay-event="getCheckLength">删除选中用户</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+                </div>
+            </script>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
+            <script>
+                layui.use(['table', 'element'],function () {
+                    var table = layui.table,
+                        element = layui.element;
+                    table.render({
+                        elem: '#test',
+                        url: '/user_list',
+                        toolbar: '#toolbarDemo',
+                        title: '用户数据表',
+                        cols: [
+                            [{
+                                type: 'checkbox',
+                                fixed: 'left'
+                            }, {
+                                field: '_id',
+                                title: 'ID',
+                                width: 80,
+                                fixed: 'left',
+                                unresize: true,
+                                sort: true
+                            }, {
+                                field: 'username',
+                                title: '用户名',
+                                width: 120,
+                                edit: 'text'
+                            }, {
+                                field: 'name',
+                                title: '姓名',
+                                width: 120,
+                                edit: 'text'
+                            }, {
+                                field: 'sex',
+                                title: '性别',
+                                width: 80,
+                                edit: 'text',
+                                sort: true
+                            }, {
+                                field: 'power',
+                                title: '权限',
+                                width: 100,
+                                sort: true
+                            }, {
+                                field: 'intro',
+                                title: '简介',
+                                width: 150
+                            }, {
+                                field: 'regtime',
+                                title: '注册时间',
+                                width: 150,
+                                sort: true
+                            }, {
+                                field: 'phone',
+                                title: '联系方式',
+                                width: 120
+                            }, {
+                                fixed: 'right',
+                                title: '操作',
+                                toolbar: '#barDemo',
+                                width: 150
+                            }]
+                        ],
+                        page: true
+                    });
+
+                    //头工具栏事件
+                    table.on('toolbar(test)', function (obj) {
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        switch (obj.event) {
+                            case 'getCheckData':
+                                var data = checkStatus.data;
+                                location.href = './user_add.html';
+                                break;
+                            case 'getCheckLength':
+                                var data = checkStatus.data;
+                                // console.log(data);
+                                (function (index) {
+                                    for (var i = 0; i < data.length; i++) {
+                                        $.ajax({
+                                            type: "post",
+                                            url: "/user_list",
+                                            data: {
+                                                _id: data[i]._id
+                                            },
+                                            success: function (str) {
+                                                location.href = './user_list.html';
+                                            }
+                                        });
+                                    }
+                                })();
+                                break;
+                            case 'isAll':
+                                layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                                break;
+                        };
+                    });
+
+                    //监听行工具事件
+                    table.on('tool(test)', function (obj) {
+                        var data = obj.data;
+                        //console.log(obj)
+                        if (obj.event === 'del') {
+                            layer.confirm('真的删除行么', function (index) {
+                                console.log(obj.data);
+                                $.ajax({
+                                    type: "post",
+                                    url: "/user_list",
+                                    data: {
+                                        _id: obj.data._id
+                                    },
+                                    success: function (str) {
+                                        location.href = './user_list.html';
+                                    }
+                                });
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else if (obj.event === 'edit') {
+                            location.href = `./user_update.html?${obj.data._id}`;
+                        }
+                    });
+                });
+            </script>
+        </div>
+
+
+
+</body>
+
+</html>

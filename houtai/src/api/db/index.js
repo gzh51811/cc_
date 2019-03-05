@@ -4,7 +4,7 @@ const MongoClient = mongodb.MongoClient;
 
 const database_url = 'mongodb://localhost:27017';
 //表名
-const database_name = 'cong';
+const database_name = 'chen';
 
 async function connect() {
     let client = await MongoClient.connect(database_url, {

@@ -14,6 +14,7 @@ const loginRouter = require('./login_r');
 const userListRouter = require('./user_list');
 const userAddRouter = require('./user_add');
 const userUpdateRouter = require('./user_update');
+const tokenverifyRouter = require('./tokenverify');
 router.use(KoaBody({
     // 支持formdata
     multipart: true,
@@ -43,5 +44,6 @@ router.use('/login_r',loginRouter.routes());
 router.use('/user_list',userListRouter.routes());
 router.use('/user_add',userAddRouter.routes());
 router.use('/user_update',userUpdateRouter.routes());
+router.use('/tokenverify',tokenverifyRouter.routes());
 
 module.exports = router;

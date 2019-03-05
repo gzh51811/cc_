@@ -7,6 +7,7 @@
     <title>用户列表</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
     <script src="../layui/layui.all.js"></script>
     <script src="../layui/layui.js"></script>
 </head>
@@ -41,23 +42,7 @@
                     </dl>
                 </li>
             </ul>
-            <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;">基本资料</a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;">安全设置</a>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="./login.html">退出</a>
-                </li>
+            <ul class="layui-nav layui-layout-right" id="user_exit">
             </ul>
         </div>
 
@@ -88,12 +73,17 @@
                             <dd>
                                 <a href="./user_add.html">添加用户</a>
                             </dd>
+                            <dd class="layui-this">
+                                <a href="javascript:;" class="myedit">修改个人信息</a>
+                            </dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
                         <a href="javascript:;">订单管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="./order_list.html">订单列表</a></dd>
+                            <dd>
+                                <a href="./order_list.html">订单列表</a>
+                            </dd>
                         </dl>
                     </li>
                 </ul>
@@ -117,7 +107,7 @@
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             </script>
             <script>
-                layui.use(['table', 'element'],function () {
+                layui.use(['table', 'element'], function () {
                     var table = layui.table,
                         element = layui.element;
                     table.render({
@@ -185,27 +175,39 @@
                         var checkStatus = table.checkStatus(obj.config.id);
                         switch (obj.event) {
                             case 'getCheckData':
-                                var data = checkStatus.data;
-                                location.href = './user_add.html';
-                                break;
+                                var user = localStorage.getItem('user');
+                                user = JSON.parse(user);
+                                if (user.str[0].power == "超级管理员") {
+                                    var data = checkStatus.data;
+                                    location.href = './user_add.html';
+                                    break;
+                                } else {
+                                    alert('sorry ~ 您没有权限哦');
+                                }
                             case 'getCheckLength':
-                                var data = checkStatus.data;
-                                // console.log(data);
-                                (function (index) {
-                                    for (var i = 0; i < data.length; i++) {
-                                        $.ajax({
-                                            type: "post",
-                                            url: "/user_list",
-                                            data: {
-                                                _id: data[i]._id
-                                            },
-                                            success: function (str) {
-                                                location.href = './user_list.html';
-                                            }
-                                        });
-                                    }
-                                })();
-                                break;
+                                var user = localStorage.getItem('user');
+                                user = JSON.parse(user);
+                                if (user.str[0].power == "超级管理员") {
+                                    var data = checkStatus.data;
+                                    // console.log(data);
+                                    (function (index) {
+                                        for (var i = 0; i < data.length; i++) {
+                                            $.ajax({
+                                                type: "post",
+                                                url: "/user_list",
+                                                data: {
+                                                    _id: data[i]._id
+                                                },
+                                                success: function (str) {
+                                                    location.href = './user_list.html';
+                                                }
+                                            });
+                                        }
+                                    })();
+                                    break;
+                                } else {
+                                    alert('sorry ~ 您没有权限哦');
+                                }
                             case 'isAll':
                                 layer.msg(checkStatus.isAll ? '全选' : '未全选');
                                 break;
@@ -217,23 +219,35 @@
                         var data = obj.data;
                         //console.log(obj)
                         if (obj.event === 'del') {
-                            layer.confirm('真的删除行么', function (index) {
-                                console.log(obj.data);
-                                $.ajax({
-                                    type: "post",
-                                    url: "/user_list",
-                                    data: {
-                                        _id: obj.data._id
-                                    },
-                                    success: function (str) {
-                                        location.href = './user_list.html';
-                                    }
+                            var user = localStorage.getItem('user');
+                            user = JSON.parse(user);
+                            if (user.str[0].power == "超级管理员") {
+                                layer.confirm('真的删除行么', function (index) {
+                                    console.log(obj.data);
+                                    $.ajax({
+                                        type: "post",
+                                        url: "/user_list",
+                                        data: {
+                                            _id: obj.data._id
+                                        },
+                                        success: function (str) {
+                                            location.href = './user_list.html';
+                                        }
+                                    });
+                                    obj.del();
+                                    layer.close(index);
                                 });
-                                obj.del();
-                                layer.close(index);
-                            });
+                            } else {
+                                alert('sorry ~ 您没有权限哦');
+                            }
                         } else if (obj.event === 'edit') {
-                            location.href = `./user_update.html?${obj.data._id}`;
+                            var user = localStorage.getItem('user');
+                            user = JSON.parse(user);
+                            if (user.str[0].power == "超级管理员") {
+                                location.href = `./user_update.html?${obj.data._id}`;
+                            } else {
+                                alert('sorry ~ 您没有权限哦');
+                            }
                         }
                     });
                 });

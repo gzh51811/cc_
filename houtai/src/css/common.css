@@ -2,6 +2,17 @@
     padding: 20px;
     /* overflow-y: hidden; */
 }
+
+.layui-upload-img {
+    width: 92px;
+    height: 92px;
+    margin: 0 10px 10px 0;
+}
+
+.tu {
+    margin-left: 110px;
+}
+
 .model_bg {
     position: fixed;
     top: 0;
@@ -12,7 +23,8 @@
     z-index: 999;
     display: none;
 }
-.my_model{
+
+.my_model {
     position: fixed;
     display: none;
     top: 200px;
@@ -24,22 +36,27 @@
     padding: 20px;
     background: pink;
 }
+
 .my_model .title {
     font-size: 14px;
     color: #3c3c3c;
     font-weight: 700;
     margin-bottom: 20px;
 }
+
 .my_model p {
     line-height: 16px;
 }
-.closeModel{
+
+.closeModel {
     float: right;
     cursor: pointer;
 }
+
 .my_model .opBtn {
     margin-top: 20px;
 }
+
 .my_model .opBtn a {
     width: 58px;
     height: 28px;
@@ -50,20 +67,25 @@
     margin-right: 10px;
     font-weight: 700;
 }
+
 .my_model .dialog-sure {
     background: #52a0e5;
     color: #fff;
     border: 1px solid #52a0e5;
 }
+
 .my_model .dialog-close {
     background: #fff;
     border: 1px solid #d9d9d9;
     color: #3c3c3c;
 }
-.layui-form-radio, .layui-form-radio * {
+
+.layui-form-radio,
+.layui-form-radio * {
     display: inline-block;
     vertical-align: middle;
 }
+
 /* 列表 */
 .Header {
     position: relative;

@@ -10,7 +10,7 @@ $(() => {
         var uploadInst = upload.render({
             elem: '#test1',
             url: '/upload',
-            field:'images',
+            field: 'images',
             before: function (obj) {
                 //预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {

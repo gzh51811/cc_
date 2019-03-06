@@ -1,4 +1,3 @@
-
 const Router = require('koa-router');
 const KoaBody = require('koa-body');
 const path = require('path');
@@ -22,7 +21,7 @@ const tokenverifyRouter = require('./tokenverify');
 router.use(KoaBody({
     // 支持formdata
     multipart: true,
-    uploadDir:'./uploads',
+    uploadDir: './uploads',
     // 文件支持
     formidable: {
         // 指定保存路径
@@ -45,11 +44,12 @@ router.use('/list', listRouter.routes());
 router.use('/goods', goodsRouter.routes());
 router.use('/order', orderRouter.routes());
 router.use('/sort', sortRouter.routes());
+router.use('/upload', uploadRouter.routes());
 
-router.use('/login_r',loginRouter.routes());
-router.use('/user_list',userListRouter.routes());
-router.use('/user_add',userAddRouter.routes());
-router.use('/user_update',userUpdateRouter.routes());
-router.use('/tokenverify',tokenverifyRouter.routes());
+router.use('/login_r', loginRouter.routes());
+router.use('/user_list', userListRouter.routes());
+router.use('/user_add', userAddRouter.routes());
+router.use('/user_update', userUpdateRouter.routes());
+router.use('/tokenverify', tokenverifyRouter.routes());
 
 module.exports = router;

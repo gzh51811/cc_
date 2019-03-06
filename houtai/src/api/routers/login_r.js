@@ -14,7 +14,6 @@ router.post('/', async (ctx, next) => {
         username,
         password
     } = ctx.request.body;
-    console.log(username,password);
     // console.log(username,password); password:password
     let _token = token.create(username);
     let str = await db.find('user',{username,password});

@@ -17,7 +17,6 @@ $(() => {
             let timer = y + '-' + m + '-' + d;
             let desc = data.field.desc,
                 username = data.field.username;
-            console.log(data);
             if (id) {
                 //修改
                 $.ajax({

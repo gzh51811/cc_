@@ -24,7 +24,6 @@ $(function () {
     // 从列表页接收id
     var kum = decodeURI(location.search);//接收字符串
     var username = kum.substring(1);
-    console.log(username);
     // 初始化渲染
     $.ajax({
         type: "post",
@@ -132,7 +131,6 @@ $(function () {
         let min = time.getMinutes();
         var nowTime = `${year}.${mon}.${day} ${hour}:${min}`;
         if (user_ojbk && phone_ojbk && psw1_ojbk && psw2_ojbk && name_ojbk) {
-            console.log(user_val, psw1_val, sex, phone_val, name_val);
             $.ajax({
                 type: "post",
                 url: "/user_update",

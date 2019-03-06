@@ -1,4 +1,4 @@
-window.onload = function () {
+
     function paGe(table, laypage) {
 
         table.on('toolbar(test)', function (obj) {
@@ -49,7 +49,7 @@ window.onload = function () {
         }
         return obj;
     }
-
+    window.onload = function () {
     // 退出登录
     $('#user_exit').on('click', '.exit', function () {
         alert('退出成功 ~');

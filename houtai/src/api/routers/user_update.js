@@ -18,7 +18,6 @@ router.get('/',async (ctx, next)=>{
 
 router.post('/', async (ctx, next)=>{
     let {username , code ,password,sex,phone,regtime,intro,name,_id} = ctx.request.body;
-    console.log(username);
     if(code == 2){
         let sql = {'username':username,'password':password,'sex':sex,'phone':phone,'regtime':regtime,'intro':intro,'name':name,data_id:2,power:'普通会员'};
         let str2 = await db.update('user',{username:username},{$set:sql} );
